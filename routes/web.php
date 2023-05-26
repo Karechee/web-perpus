@@ -1,28 +1,39 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MemberController;
-use App\Http\Controllers\BookController;
 
-// BookController
-Route::get('/books', [BookController::class, 'index'])->name('books.index');
-Route::get('/books/create', [BookController::class, 'create'])->name('books.create');
-Route::post('/books', [BookController::class, 'store'])->name('books.store');
-Route::get('/books/edit', [BookController::class, 'edit'])->name('books.edit');
-Route::put('/books/{book}', [BookController::class, 'update'])->name('books.update');
-Route::delete('/books/{book}', [BookController::class, 'destroy'])->name('books.destroy');
-
-
-
-//MemberController
-Route::get('/members', [MemberController::class, 'index'])->name('members.index');
-Route::get('/members/create', [MemberController::class, 'create'])->name('members.create');
-Route::post('/members', [MemberController::class, 'store'])->name('members.store');
-Route::get('/members/edit', [BookController::class, 'edit'])->name('members.edit');
-Route::put('/members/{member}', [MemberController::class, 'update'])->name('members.update');
-Route::delete('/members/{member}', [MemberController::class, 'destroy'])->name('members.destroy');
-
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Route untuk Data Buku
+Route::get('/buku', 'BukuController@bukutampil');
+Route::post('/buku/tambah','BukuController@bukutambah');
+Route::get('/buku/hapus/{id_buku}','BukuController@bukuhapus');
+Route::put('/buku/edit/{id_buku}', 'BukuController@bukuedit');
+
+//Route untuk Data Buku
+Route::get('/home', function(){return view('view_home');});
+
+//Route untuk Data Member
+Route::get('/member', 'MemberController@membertampil');
+Route::post('/member/tambah', 'MemberController@membertambah');
+Route::get('/member/hapus/{id_member}', 'MemberController@memberhapus');
+Route::put('/member/edit/{id_member}', 'MemberController@memberedit');
+
+//Route untuk Data Pengurus
+Route::get('/pengurus', 'PengurusController@pengurustampil');
+Route::post('/pengurus/tambah', 'PengurusController@pengurustambah');
+Route::get('/pengurus/hapus/{id_pengurus}', 'PengurusController@pengurushapus');
+Route::put('/pengurus/edit/{id_pengurus}', 'PengurusController@pengurusedit');

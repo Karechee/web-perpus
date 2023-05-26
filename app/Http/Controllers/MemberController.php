@@ -1,58 +1,62 @@
 <?php
+
 namespace App\Http\Controllers;
 
-use App\Models\Member;
 use Illuminate\Http\Request;
+
+//panggil model BukuModel
+use App\Models\MemberModel;
 
 class MemberController extends Controller
 {
-    public function index()
+    //method untuk tampil data member
+    public function membertampil()
     {
-        $members = Member::all();
-        return view('members.index', compact('members'));
+        $datamember = MemberModel::orderby('id_member', 'ASC')
+        ->paginate(5);
+
+        return view('halaman/view_member',['member'=>$datamember]);
     }
 
-    public function create()
+    //method untuk tambah data member
+    public function membertambah(Request $request)
     {
-        return view('members.create');
-    }
-
-    public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
+        $this->validate($request, [
+            'nama_member' => 'required',
+            'email' => 'required'
         ]);
 
-        Member::create($request->all());
-
-        return redirect()->route('members.index')
-            ->with('success', 'Member created successfully.');
-    }
-
-    public function edit(Member $member)
-    {
-        return view('members.edit', compact('member'));
-    }
-
-    public function update(Request $request, Member $member)
-    {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
+        MemberModel::create([
+            'nama_member' => $request->nama_member,
+            'email' => $request->email
         ]);
 
-        $member->update($request->all());
-
-        return redirect()->route('members.index')
-            ->with('success', 'Member updated successfully.');
+        return redirect('/member');
     }
 
-    public function destroy(Member $member)
-    {
-        $member->delete();
+     //method untuk hapus data member
+     public function memberhapus($id_member)
+     {
+         $datamember=MemberModel::find($id_member);
+         $datamember->delete();
+ 
+         return redirect()->back();
+     }
 
-        return redirect()->route('members.index')
-            ->with('success', 'Member deleted successfully.');
+     //method untuk edit data member
+    public function memberedit($id_member, Request $request)
+    {
+        $this->validate($request, [
+            'nama_member' => 'required',
+            'email' => 'required'
+        ]);
+
+        $id_member = MemberModel::find($id_member);
+        $id_member->nama_member      = $request->nama_member;
+        $id_member->email   = $request->email;
+
+        $id_member->save();
+
+        return redirect()->back();
     }
 }
