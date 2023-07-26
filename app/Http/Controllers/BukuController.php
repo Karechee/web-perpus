@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+//panggil model BukuModel
 use App\Models\BukuModel;
 
 class BukuController extends Controller
 {
+    //method untuk tampil data buku
     public function bukutampil()
     {
-        $databuku = BukuModel::orderby('kd_buku', 'ASC')
+        $databuku = BukuModel::orderby('kode_buku', 'ASC')
         ->paginate(5);
 
         return view('halaman/view_buku',['buku'=>$databuku]);
@@ -19,11 +21,18 @@ class BukuController extends Controller
     //method untuk tambah data buku
     public function bukutambah(Request $request)
     {
+        $this->validate($request, [
+            'kode_buku' => 'required',
+            'judul' => 'required',
+            'pengarang' => 'required',
+            'kategori' => 'required'
+        ]);
+
         BukuModel::create([
-            'kd_buku' => $request->kd_buku,
+            'kode_buku' => $request->kode_buku,
             'judul' => $request->judul,
-            'author' => $request->author,
-            'genre' => $request->genre
+            'pengarang' => $request->pengarang,
+            'kategori' => $request->kategori
         ]);
 
         return redirect('/buku');
@@ -42,17 +51,17 @@ class BukuController extends Controller
     public function bukuedit($id_buku, Request $request)
     {
         $this->validate($request, [
-            'kd_buku' => 'required',
+            'kode_buku' => 'required',
             'judul' => 'required',
-            'author' => 'required',
-            'genre' => 'required'
+            'pengarang' => 'required',
+            'kategori' => 'required'
         ]);
 
         $id_buku = BukuModel::find($id_buku);
-        $id_buku->kd_buku   = $request->kd_buku;
+        $id_buku->kode_buku   = $request->kode_buku;
         $id_buku->judul      = $request->judul;
-        $id_buku->author  = $request->author;
-        $id_buku->genre   = $request->genre;
+        $id_buku->pengarang  = $request->pengarang;
+        $id_buku->kategori   = $request->kategori;
 
         $id_buku->save();
 

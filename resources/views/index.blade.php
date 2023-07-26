@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Perpustakaan| @yield('title')</title>
+        <title>Manajemen Sistem Perpustakaan | @yield('title')</title>
 
         <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/bootstrap.css">
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
@@ -15,15 +15,15 @@
     </head>
 
     <body>
-        <div class="container" style="background:#ccc">
+        <div style="background:#cac">
         <div class="alert alert-info text-center">   
-            <h4 style="margin-bottom: 0px"><b>Selamat datang</b> di Perpustakaan</h4>     
+            <h4><b>Selamat datang</b> di Perpustakaan</h4>     
         </div>
             @include('menu')
-            @include('banner')
-            @include('sidebar')
             @include('konten')
             @include('footer')
         </div>
     </body>
 </html>
+
+

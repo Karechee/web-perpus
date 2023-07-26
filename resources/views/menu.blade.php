@@ -12,11 +12,11 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/member">Data Member</a>
+                    <a class="nav-link" href="/anggota">Data Anggota</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/pengurus">Data Petugas</a>
+                    <a class="nav-link" href="/petugas">Data Petugas</a>
                 </li>
 
                 <li class="nav-item"> 
@@ -24,7 +24,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/logout">Logout</a>
+                    <a class="nav-link" href="/">Logout</a>
                 </li>
             </ul>
         </div>

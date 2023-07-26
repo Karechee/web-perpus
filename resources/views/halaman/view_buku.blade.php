@@ -2,7 +2,7 @@
 @section('title', 'Buku')
 
 @section('isihalaman')
-    <h3><center>Daftar Buku Perpustakaan Universitas Semarang</center></h3>
+    <h3><center>Daftar Buku Perpustakaan</center></h3>
     
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalBukuTambah"> 
         Tambah Data Buku 
@@ -16,7 +16,7 @@
                 <td align="center">ID Buku</td>
                 <td align="center">Kode Buku</td>
                 <td align="center">Judul Buku</td>
-                <td align="center">Author</td>
+                <td align="center">Pengarang</td>
                 <td align="center">Kategori</td>
                 <td align="center">Aksi</td>
             </tr>
@@ -27,10 +27,10 @@
                 <tr>
                     <td align="center" scope="row">{{ $index + $buku->firstItem() }}</td>
                     <td>{{$bk->id_buku}}</td>
-                    <td>{{$bk->kd_buku}}</td>
+                    <td>{{$bk->kode_buku}}</td>
                     <td>{{$bk->judul}}</td>
-                    <td>{{$bk->author}}</td>
-                    <td>{{$bk->genre}}</td>
+                    <td>{{$bk->pengarang}}</td>
+                    <td>{{$bk->kategori}}</td>
                     <td align="center">
                         
                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalBukuEdit{{$bk->id_buku}}"> 
@@ -51,7 +51,7 @@
                                             <div class="form-group row">
                                                 <label for="id_buku" class="col-sm-4 col-form-label">Kode Buku</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="kd_buku" name="kd_buku" placeholder="Masukan Kode Buku">
+                                                    <input type="text" class="form-control" id="kode_buku" name="kode_buku" placeholder="Masukan Kode Buku">
                                                 </div>
                                             </div>
 
@@ -65,17 +65,17 @@
 
                                             <p>
                                             <div class="form-group row">
-                                                <label for="author" class="col-sm-4 col-form-label">Nama Author</label>
+                                                <label for="pengarang" class="col-sm-4 col-form-label">Nama Pengarang</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="author" name="author" value="{{ $bk->author}}">
+                                                    <input type="text" class="form-control" id="pengarang" name="pengarang" value="{{ $bk->pengarang}}">
                                                 </div>
                                             </div>
 
                                             <p>
                                             <div class="form-group row">
-                                                <label for="genre" class="col-sm-4 col-form-label">Kategori</label>
+                                                <label for="kategori" class="col-sm-4 col-form-label">Kategori</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="genre" name="genre" value="{{ $bk->genre}}">
+                                                    <input type="text" class="form-control" id="kategori" name="kategori" value="{{ $bk->kategori}}">
                                                 </div>
                                             </div>
 
@@ -123,7 +123,7 @@
                         <div class="form-group row">
                             <label for="id_buku" class="col-sm-4 col-form-label">Kode Buku</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="kd_buku" name="kd_buku" placeholder="Masukan Kode Buku">
+                                <input type="text" class="form-control" id="kode_buku" name="kode_buku" placeholder="Masukan Kode Buku">
                             </div>
                         </div>
 
@@ -137,17 +137,17 @@
 
                         <p>
                         <div class="form-group row">
-                            <label for="author" class="col-sm-4 col-form-label">Nama Author</label>
+                            <label for="pengarang" class="col-sm-4 col-form-label">Nama Pengarang</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="author" name="author" placeholder="Masukan Nama Author">
+                                <input type="text" class="form-control" id="pengarang" name="pengarang" placeholder="Masukan Nama Pengarang">
                             </div>
                         </div>
 
                         <p>
                         <div class="form-group row">
-                            <label for="genre" class="col-sm-4 col-form-label">Kategori</label>
+                            <label for="kategori" class="col-sm-4 col-form-label">Kategori</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="genre" name="genre" placeholder="Masukan Kategori">
+                                <input type="text" class="form-control" id="kategori" name="kategori" placeholder="Masukan Kategori">
                             </div>
                         </div>
 
